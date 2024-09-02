@@ -8,7 +8,7 @@ import tempfile
 
 # SQL для создания таблицы
 sql_schema_init = """
-CREATE TABLE IF NOT EXISTS public.type_marijuana (
+CREATE TABLE IF NOT EXISTS public.cannabis_products (
     id SERIAL PRIMARY KEY,
     uid TEXT,
     strain TEXT,
@@ -65,7 +65,7 @@ def dag_api():
         # Загрузка данных в PostgreSQL
         try:
             hook = PostgresHook(postgres_conn_id='api_db')
-            hook.bulk_load('type_marijuana', tmp_file)
+            hook.bulk_load('cannabis_products', tmp_file)
         finally:
             os.remove(tmp_file)
 
